@@ -33,9 +33,9 @@ export default function HeadlineCarousel({articles}:{articles:ArticleDataType[]}
                         <CarouselItem key={index} className="h-full">
                             <div className="h-full flex flex-col justify-between py-2 px-5 border rounded-2xl">
                                 <a href={article.url} target="_blank">
-                                    <div className="h-[400px] bg-amber-200">
+                                    <div className="h-[400px]">
                                         <Image src={article.urlToImage} alt={article.title}
-                                               className="w-full h-full my-1 object-cover"/>
+                                               className="w-full h-full my-1 object-cover relative"/>
                                         <p className="bg-black/60 text-white text-md px-3 py-1 text-center absolute top-1">
                                             {article.source.name}
                                         </p>
