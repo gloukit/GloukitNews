@@ -35,10 +35,7 @@ export default function HeadlineCarousel({articles}:{articles:ArticleDataType[]}
                                 <a href={article.url} target="_blank">
                                     <div className="h-[400px]">
                                         <Image src={article.urlToImage} alt={article.title}
-                                               className="w-full h-full my-1 object-cover relative"/>
-                                        <p className="bg-black/60 text-white text-md px-3 py-1 text-center absolute top-1">
-                                            {article.source.name}
-                                        </p>
+                                               className="w-full h-full my-1 object-cover"/>
                                     </div>
 
                                     <div className="flex flex-col h-[120px]">
