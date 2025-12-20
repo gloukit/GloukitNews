@@ -44,6 +44,10 @@ export default function HeadlineCarousel({articles}:{articles:ArticleDataType[]}
                                         </h3>
                                         <p className="line-clamp-2 text-sm">{article.description}</p>
                                     </div>
+
+                    <p className="min-w-15 bg-black/60 text-white text-md px-3 py-1 text-center absolute top-0">
+                        {article.source.name}
+                    </p>
                                 </a>
                             </div>
                             
