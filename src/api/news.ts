@@ -2,9 +2,16 @@ import { API_CONFIG } from "./config";
 import type { ArticleResponse } from "./types";
 
 class NewsAPI {
-    private createUrl(endpoint:string,params:Record<string,string|number|null>){
-        const searchParams = new URLSearchParams({apiKey:API_CONFIG.API_KEY, ...params});
-        return `${endpoint}?${searchParams.toString()}`;
+    private createUrl(path:string,params:Record<string,string|number|null>){
+        const searchParams = new URLSearchParams();
+
+        Object.entries(params).forEach( ([key,value]) => {
+            if(value !==null){
+                searchParams.append(key,String(value));
+            }
+        });
+        
+        return `${path}?${searchParams.toString()}`;
     }
 
     private async fetchData<T>(url:string):Promise<T>{
@@ -32,24 +39,24 @@ class NewsAPI {
     }
 
     async getHeadlines (country:string):Promise<ArticleResponse>{
-        const url = this.createUrl(`${API_CONFIG.BASE_URL}/top-headlines`,{country:country});
+        const url = this.createUrl("/api/news",{country});
         return this.fetchData(url);
     }
 
     async getByCategory({category,page,pageSize}:{category:string; page:number; pageSize:number}):Promise<ArticleResponse>{
-        const url = this.createUrl(`${API_CONFIG.BASE_URL}/top-headlines`,{
-            category:category,
-            page:page.toString(),
-            pageSize:pageSize.toString(),
+        const url = this.createUrl("/api/news",{
+            category,
+            page,
+            pageSize,
         });
         return this.fetchData(url);
     }
 
     async searchNews({query,page,pageSize}:{query:string; page:number; pageSize:number}):Promise<ArticleResponse>{
-        const url = this.createUrl(`${API_CONFIG.BASE_URL}/everything`,{
+        const url = this.createUrl("/api/news",{
             q:query,
-            page:page.toString(),
-            pageSize:pageSize.toString(),            
+            page,
+            pageSize,            
         });
         return this.fetchData(url);
     }

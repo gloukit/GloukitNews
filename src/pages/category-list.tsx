@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom"
 export function CategoryList(){
     const {category} = useParams() ;  // 注意：useParams 的值可能为 undefined
 
-    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category??null)  //??为空值合并运算符，在category为 null 或 undefined 时，取右边的值
+    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category??"") ;
     const articles = data?.pages.flatMap(p => p?.articles) ?? [] ;
     console.log(data);
 
