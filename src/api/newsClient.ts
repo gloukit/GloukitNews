@@ -1,3 +1,4 @@
+import { API_CONFIG } from "./config";
 import type { ArticleResponse } from "./types";
 
 class NewsAPI {
@@ -38,12 +39,12 @@ class NewsAPI {
     }
 
     async getHeadlines (country:string):Promise<ArticleResponse>{
-        const url = this.createUrl("/api/news",{country});
+        const url = this.createUrl(API_CONFIG.BASE_PATH,{country});
         return this.fetchData(url);
     }
 
     async getByCategory({category,page,pageSize}:{category:string; page:number; pageSize:number}):Promise<ArticleResponse>{
-        const url = this.createUrl("/api/news",{
+        const url = this.createUrl(API_CONFIG.BASE_PATH,{
             category,
             page,
             pageSize,
@@ -52,7 +53,7 @@ class NewsAPI {
     }
 
     async searchNews({query,page,pageSize}:{query:string; page:number; pageSize:number}):Promise<ArticleResponse>{
-        const url = this.createUrl("/api/news",{
+        const url = this.createUrl(API_CONFIG.BASE_PATH,{
             q:query,
             page,
             pageSize,            
