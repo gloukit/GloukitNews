@@ -11,7 +11,7 @@ export function SearchResults(){
     const q = searchParams.get("q");
     const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useSearchQuery(q ?? "");
 
-    const articles = data?.pages.flatMap(p => p?.articles) ?? [];
+    const articles = data?.pages.flatMap(p => p?.articles??[]) ?? [];
 
     if(isLoading){return <SkeletonList/>}
     if(error){return <ErrorEmpty error={error} handleRefresh={()=>refetch()}/>}
@@ -34,8 +34,8 @@ export function SearchResults(){
         <div>
             <h3>Search Results of "{q}"</h3>
             <div>
-                {articles && articles.length>0 && articles.map((article,index)=>(
-                    <NewsCard {...article} key={index}/>
+                {articles && articles.length>0 && articles.map((article)=>(
+                    <NewsCard {...article} key={article.url}/>
                 ))}
 
                 {hasNextPage?(

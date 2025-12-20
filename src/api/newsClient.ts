@@ -1,4 +1,3 @@
-import { API_CONFIG } from "./config";
 import type { ArticleResponse } from "./types";
 
 class NewsAPI {

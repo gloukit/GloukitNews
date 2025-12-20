@@ -10,7 +10,9 @@ export function CategoryList(){
     const {category} = useParams() ;  // 注意：useParams 的值可能为 undefined
 
     const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category??"") ;
-    const articles = data?.pages.flatMap(p => p?.articles) ?? [] ;
+    const articles = data?.pages
+                          .flatMap(p => p?.articles ?? []) //在数据层将undefined清洗掉。原来的p?.articles返回的结果可能是undefined，会导致后续引用数据时的类型报错
+                          ?? [] ;
     console.log(data);
 
     if(isLoading){return <SkeletonList/>}
@@ -33,8 +35,8 @@ export function CategoryList(){
         <div>
             <h3>News about {category}</h3>
             <div className="flex flex-col gap-4">
-                {articles && articles.length>0 && articles.map((article,index)=>(
-                    <NewsCard {...article} key={index}/>
+                {articles && articles.length>0 && articles.map((article)=>(
+                    <NewsCard {...article} key={article.url}/>
                 ))}
 
                 {hasNextPage?(
