@@ -8,7 +8,6 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import { SearchResults } from "./pages/search-results";
 import { Toaster } from "./components/ui/sonner";
-import TopHeadlines from "./pages/top-headlines-list";
 
 function App() {
   const queryClient = new QueryClient({
@@ -29,7 +28,7 @@ function App() {
             <Layout>
               <Routes>
                 <Route path="/" element={<Home/>}></Route>
-                <Route path="/topheadlines" element={<TopHeadlines/>}></Route>
+                {/*<Route path="/topheadlines" element={<TopHeadlines/>}></Route>*/}
                 <Route path="/category/:category" element={<CategoryList/>}></Route>
                 <Route path="/search" element={<SearchResults/>}></Route>
               </Routes>
