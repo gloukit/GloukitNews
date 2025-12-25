@@ -9,16 +9,16 @@ import { useNavigate } from "react-router-dom";
 
 export default function TopHeadlines(){
     const navigate = useNavigate();
-
     const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery("general") ;
-    const articles = data?.pages
-                          .flatMap(p => p?.articles ?? []) 
-                          ?? [] ;
 
-    if(data)console.log(data);
     if(isLoading){return <SkeletonList/>}
     if(error){return <ErrorEmpty error={error} handleRefresh={()=>refetch()}/>}
-    if(articles?.length===0 ){
+
+    const articles = data?.pages
+                        ?.flatMap(p => p?.articles ?? []) 
+                        ?? [] ;
+
+    if(articles.length===0 ){
         return (
             <Empty>
                 <EmptyHeader>
@@ -41,7 +41,7 @@ export default function TopHeadlines(){
         <div>
             <h3>Top Headlines</h3>
             <div className="flex flex-col gap-4">
-                {articles && articles.length>0 && articles.map((article)=>(
+                {articles.map((article)=>(
                     <NewsCard {...article} key={article.url}/>
                 ))}
 
