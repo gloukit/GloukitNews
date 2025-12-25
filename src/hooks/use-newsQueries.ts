@@ -5,7 +5,7 @@ const PAGE_SIZE = 15 ;
 
 export function useNewsQuery(category:string){
     return useQuery({
-        queryKey:["news",category],
+        queryKey:["news","headlines"],
         queryFn:()=>newsAPI.getHeadlines(category),
     })
 }

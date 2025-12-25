@@ -9,14 +9,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function TopHeadlines(){
     const navigate = useNavigate();
-    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery("general") ;
+    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery("general");
 
     if(isLoading){return <SkeletonList/>}
     if(error){return <ErrorEmpty error={error} handleRefresh={()=>refetch()}/>}
 
     const articles = data?.pages
-                        ?.flatMap(p => p?.articles ?? []) 
-                        ?? [] ;
+                         .flatMap(p => p?.articles ?? []) 
+                         ?? [] ;
 
     if(articles.length===0 ){
         return (

@@ -7,7 +7,6 @@ import { useNewsQuery } from "@/hooks/use-newsQueries";
 export function Home(){
     const {data,isLoading,error,refetch} = useNewsQuery("general");
     const articles = data?.articles ?? [];
-    
 
     if(isLoading){return <SkeletonHome/>;}
     if(error){return <ErrorEmpty error={error} handleRefresh={()=>refetch()}/>;}

@@ -12,7 +12,7 @@ export default function TeleSidebar({articles}:{articles:ArticleDataType[]}){
                     Top Headlines
                 </h1>
                 <div className="hover:text-secondary-foreground text-muted-foreground font-bold">
-                    <Link to="/category/general">
+                    <Link to="/topheadlines">
                         <div className="flex items-center gap-2">
                             View More
                             <ExternalLink className="size-4"/>
