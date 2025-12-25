@@ -5,7 +5,7 @@ import TopCategoryCard from "@/components/home-card";
 import { useNewsQuery } from "@/hooks/use-newsQueries";
 
 export function Home(){
-    const {data,isLoading,error,refetch} = useNewsQuery("us");
+    const {data,isLoading,error,refetch} = useNewsQuery("general");
     const articles = data?.articles ?? [];
 
     if(isLoading){return <SkeletonHome/>;}

@@ -35,6 +35,7 @@ export function SkeletonList(){
     )
 }
 
+
 {/*可以传入error信息*/}
 interface ErrorType {
     error:Error|null;

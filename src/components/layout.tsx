@@ -3,8 +3,9 @@ import Header from "./header";
 import { ScrollToTop } from "./scroll-to-top";
 
 export function Layout({children}:PropsWithChildren){
-    const [showScrollTop,setShowScrollTop] = useState(false);
 
+    {/*控制“跳转到顶部”按钮的显示/隐藏*/}
+    const [showScrollTop,setShowScrollTop] = useState(false);
     useEffect(()=>{
         let ticking = false;
 

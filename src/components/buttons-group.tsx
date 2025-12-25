@@ -33,20 +33,6 @@ export default function ButtonsGroup({article}:ButtonType){
         }
     }    
 
-   
-    /*使用useCollection不可行！！！！！
-    const {add:addBookmark,remove:removeBookmark,isCollection:isBookmark} = useCollection("bookmark");
-    const isCurrentlyBookmark = isBookmark(url);
-    console.log(isCurrentlyBookmark)
-
-    const handleToggleBookmark = () => {
-        if(isCurrentlyBookmark){
-            removeBookmark.mutate(url);
-        } else {
-            addBookmark.mutate({author,title,url,urlToImage,publishedAt});
-        }       
-    }*/
-
     return (
         <div className="flex space-x-2">
             <Button variant="outline" onClick={handleToggleLike}

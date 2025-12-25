@@ -4,7 +4,6 @@ import { formatTitle } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
 import { Image } from "./image";
 
-//【待做】 需要用 props.headlineData 来渲染，如果不存在用skelton；如果存在则渲染CarouselItem
 export default function HeadlineCarousel({articles}:{articles:ArticleDataType[]}){
     const [api,setApi] = useState<CarouselApi>();
     const [currentSlice,setCurrentSlice] = useState<number>(0);

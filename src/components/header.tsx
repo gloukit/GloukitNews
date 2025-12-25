@@ -13,7 +13,6 @@ import ContentDialog from "./content-dialog";
 
 export const categories:string[] = [
     "Business",
-    "General",
     "Technology",
     "Science",
     "Entertainment",

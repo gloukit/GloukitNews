@@ -1,6 +1,3 @@
-//完全根据天气项目里的useFavorite写
-//以下只适合在文章详情页组件中插入书签功能时使用
-
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocalStorage } from "./use-localStorage";
 import type { ArticleDataType } from "@/api/types";

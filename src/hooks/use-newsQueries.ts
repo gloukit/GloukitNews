@@ -3,10 +3,10 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 const PAGE_SIZE = 10 ;
 
-export function useNewsQuery(country:string){
+export function useNewsQuery(category:string){
     return useQuery({
-        queryKey:["news",country],
-        queryFn:()=>newsAPI.getHeadlines(country),
+        queryKey:["news",category],
+        queryFn:()=>newsAPI.getHeadlines(category),
     })
 }
 

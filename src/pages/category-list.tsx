@@ -7,11 +7,11 @@ import { Newspaper } from "lucide-react";
 import { useParams } from "react-router-dom"
 
 export function CategoryList(){
-    const {category} = useParams() ;  // 注意：useParams 的值可能为 undefined
+    const {category} = useParams() ; 
 
-    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category??"") ;
+    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category ?? "") ;
     const articles = data?.pages
-                          .flatMap(p => p?.articles ?? []) //在数据层将undefined清洗掉。原来的p?.articles返回的结果可能是undefined，会导致后续引用数据时的类型报错
+                          .flatMap(p => p?.articles ?? []) 
                           ?? [] ;
     console.log(data);
 
@@ -50,7 +50,6 @@ export function CategoryList(){
                         No More
                     </div>
                 )}
-
 
             </div>
         </div>

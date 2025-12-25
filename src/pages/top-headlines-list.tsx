@@ -1,27 +1,15 @@
 import NewsCard from "@/components/news-card";
 import { useNewsQuery } from "@/hooks/use-newsQueries";
-import { useNavigate, useParams } from "react-router-dom"
 import { ErrorEmpty, SkeletonList } from "@/components/skelton-error";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
 import { Newspaper, Undo2 } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 
 export default function TopHeadlines(){
     const navigate = useNavigate();
-    const {country} = useParams();
-    console.log(country)
-
-    function handleSelect(value:string){
-        if(value) {
-            navigate(`/topheadlines/${value}`)
-        }else{
-            navigate("/",{replace:true});
-        }
-    }
-
-    const {data,isLoading,error,refetch} = useNewsQuery(country??"us");
+    const {data,isLoading,error,refetch} = useNewsQuery("general");
     const articles = data?.articles ?? [];
 
     if(isLoading){return <SkeletonList/>}
@@ -48,27 +36,12 @@ export default function TopHeadlines(){
     return (
         <div>
             <div className="flex gap-2 items-center">
-                <h3 className="text-lg">Top Headlines in </h3>
-                <Select defaultValue={country} 
-                        onValueChange={(value)=>handleSelect(value)}>
-                    <SelectTrigger className="w-20 text-md">
-                        <SelectValue />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                        <SelectItem value="cn">cn</SelectItem>
-                        <SelectItem value="de">de</SelectItem>
-                        <SelectItem value="fr">fr</SelectItem>
-                        <SelectItem value="jp">jp</SelectItem>
-                        <SelectItem value="uk">uk</SelectItem>
-                        <SelectItem value="us">us</SelectItem>
-                    </SelectContent>
-                </Select>
+                <h3 className="text-lg">Top Headlines</h3>
             </div>
             
             <div>
-                {articles && articles.length>0 && articles.map((article,index)=>(
-                    <NewsCard {...article} key={index}/>
+                {articles && articles.length>0 && articles.map((article)=>(
+                    <NewsCard {...article} key={article.url}/>
                 ))}
             </div>
         </div>

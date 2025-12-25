@@ -38,8 +38,8 @@ class NewsAPI {
         return data;
     }
 
-    async getHeadlines (country:string):Promise<ArticleResponse>{
-        const url = this.createUrl(API_CONFIG.BASE_PATH,{country});
+    async getHeadlines (category:string):Promise<ArticleResponse>{
+        const url = this.createUrl(API_CONFIG.BASE_PATH,{category});
         return this.fetchData(url);
     }
 

@@ -43,7 +43,7 @@ export default function Search(){
                   </span>
                   <button className="hover:text-foreground cursor-pointer" 
                           onMouseDown={(e)=>{
-                            e.stopPropagation();  //阻止冒泡，否则执行的就是父组件li的mouseDown
+                            e.stopPropagation();  //阻止冒泡，否则执行的就是父组件<li/>的mouseDown
                             removeHistory.mutate(item.searchItem);
                             }} >
                     <X size={16}/>
