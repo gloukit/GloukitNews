@@ -9,11 +9,10 @@ import { useParams } from "react-router-dom"
 export function CategoryList(){
     const {category} = useParams() ; 
 
-    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category ?? "general") ;
+    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category ?? "") ;
     const articles = data?.pages
                           .flatMap(p => p?.articles ?? []) 
                           ?? [] ;
-    console.log(data);
 
     if(isLoading){return <SkeletonList/>}
     if(error){return <ErrorEmpty error={error} handleRefresh={()=>refetch()}/>}

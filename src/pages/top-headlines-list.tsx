@@ -1,5 +1,5 @@
 import NewsCard from "@/components/news-card";
-import { useNewsQuery } from "@/hooks/use-newsQueries";
+import { useCategoryQuery } from "@/hooks/use-newsQueries";
 import { ErrorEmpty, SkeletonList } from "@/components/skelton-error";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty";
 import { Newspaper, Undo2 } from "lucide-react";
@@ -9,8 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function TopHeadlines(){
     const navigate = useNavigate();
-    const {data,isLoading,error,refetch} = useNewsQuery("general");
-    const articles = data?.articles ?? [];
+    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery("general") ;
+    const articles = data?.pages
+                          .flatMap(p => p?.articles ?? []) 
+                          ?? [] ;
+
 
     if(isLoading){return <SkeletonList/>}
     if(error){return <ErrorEmpty error={error} handleRefresh={()=>refetch()}/>}
@@ -35,14 +38,23 @@ export default function TopHeadlines(){
     
     return (
         <div>
-            <div className="flex gap-2 items-center">
-                <h3 className="text-lg">Top Headlines</h3>
-            </div>
-            
-            <div>
+            <h3>Top Headlines</h3>
+            <div className="flex flex-col gap-4">
                 {articles && articles.length>0 && articles.map((article)=>(
                     <NewsCard {...article} key={article.url}/>
                 ))}
+
+                {hasNextPage?(
+                    <div className="w-full flex justify-center my-4">
+                        <Button onClick={()=>fetchNextPage()} className="font-bold cursor-pointer">
+                            Load More
+                        </Button>
+                    </div>
+                    ) : (
+                    <div className="w-full flex justify-center my-4 font-bold">
+                        No More
+                    </div>
+                )}
             </div>
         </div>
     )
