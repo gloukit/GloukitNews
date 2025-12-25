@@ -1,7 +1,7 @@
 import { newsAPI } from "@/api/newsClient";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
-const PAGE_SIZE = 10 ;
+const PAGE_SIZE = 15 ;
 
 export function useNewsQuery(category:string){
     return useQuery({

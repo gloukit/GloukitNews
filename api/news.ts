@@ -6,7 +6,7 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
-  const { q, category, country, page = "1", pageSize = "10" } = req.query;
+  const { q, category, country, page = "1", pageSize = "15" } = req.query;
 
   const apiKey = process.env.NEWS_API_KEY;
   if (!apiKey) {

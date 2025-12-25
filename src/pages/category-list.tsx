@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom"
 export function CategoryList(){
     const {category} = useParams() ; 
 
-    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category ?? "") ;
+    const {data,isLoading,error,fetchNextPage,hasNextPage,refetch} = useCategoryQuery(category ?? "general") ;
     const articles = data?.pages
                           .flatMap(p => p?.articles ?? []) 
                           ?? [] ;
