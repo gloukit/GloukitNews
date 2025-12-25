@@ -6,7 +6,6 @@ import { Home } from "./pages/home";
 import { CategoryList } from "./pages/category-list";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
-import TopHeadlines from "./pages/top-headlines-list";
 import { SearchResults } from "./pages/search-results";
 import { Toaster } from "./components/ui/sonner";
 
